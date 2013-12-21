@@ -10,4 +10,4 @@ RUN echo "deb-src http://security.debian.org/ jessie/updates main contrib non-fr
 RUN apt-get update 
 RUN apt-get -y upgrade
 RUN apt-get -y dist-upgrade
-RUN apt-get -y install git aptitude curl
+RUN apt-get -y install git aptitude curl sudo
