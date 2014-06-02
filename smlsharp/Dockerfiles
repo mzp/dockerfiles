@@ -1,0 +1,16 @@
+FROM ubuntu:12.04
+MAINTAINER mzp <mzp@ocaml.jp>
+RUN apt-get update
+RUN apt-get -y upgrade
+RUN apt-get -y dist-upgrade
+RUN apt-get install -y aptitude
+RUN aptitude install -y libc6-dev-i386 lib32gmp-dev wget build-essential
+RUN wget http://www.digip.org/jansson/releases/jansson-2.6.tar.gz
+RUN tar xvzf jansson-2.6.tar.gz
+RUN cd jansson-2.6 && CC="gcc -m32" ./configure && make && make install && make clean
+RUN wget http://jaist.dl.sourceforge.net/project/uriparser/Sources/0.8.0/uriparser-0.8.0.tar.bz2
+RUN tar xvjf uriparser-0.8.0.tar.bz2
+RUN cd uriparser-0.8.0 && CC="gcc -m32" ./configure --disable-test --disable-doc&& make && make install && make clean
+RUN wget http://www.pllab.riec.tohoku.ac.jp/smlsharp/download/smlsharp-2.0.0-2_ubuntu-amd64.deb
+RUN dpkg -i smlsharp-2.0.0-2_ubuntu-amd64.deb
+RUN aptitude install -y libcurl3-dev:i386
